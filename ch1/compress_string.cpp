@@ -7,11 +7,11 @@ class Solution {
 public:
   int calculateNewSize(string str) {  // returns the new compressed string size
     int new_size = 0;
-    auto runner = str.begin()+1; // we assume the string size is more than 2
+    auto runner = str.begin()+1;
     char pivot = str[0];
     int count = 1;
 
-    while (*runner) {
+    while (1) {
       if (*runner != pivot) {
         pivot = *runner;
         new_size += to_string(count).size() + 1;
@@ -19,18 +19,18 @@ public:
       }
       else count++;
 
-      runner++;
+      if (*(runner++) == '\0') break;   // runner reaches to the end
     }
 
-    new_size += to_string(count).size() + 1;  // for the last consecutive chars
     return new_size;
   }
 
   string solve(string str) {
     int prev_size = str.size();
     int new_size = calculateNewSize(str); // calculate this prior to make the result string
-    int count = 0;
+    auto runner = str.begin()+1; // we assume the string size is more than 2
     char pivot = str[0];
+    int count = 1;
     int new_runner = 0;
 
     // create the result string first (full of '0')
@@ -40,19 +40,19 @@ public:
     if (new_size >= prev_size) return str;
 
     // insert the pivot and count char one by one
-    for (char c : str) {
-      if (c != pivot) {
+    while (1) {
+      if (*runner != pivot) {
         result[new_runner++] = pivot;
-        for (char ci : to_string(count)) result[new_runner++] = ci;
-        pivot = c;
+        for (char c : to_string(count)) result[new_runner++] = c;
+
+        // change the pivot and count again
+        pivot = *runner;
         count = 1;
       }
       else count++;
-    }
 
-    // append the remaining pivot and the count
-    result[new_runner++] = pivot;
-    for (char ci : to_string(count)) result[new_runner++] = ci;
+      if (*(runner++) == '\0') break;   // runner reaches to the end
+    }
 
     return result;
   }
