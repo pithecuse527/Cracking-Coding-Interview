@@ -29,7 +29,7 @@ public:
 template<class T>
 class Solution {
 public:
-  void solve1(Node<T>* runner) { // with tmp buffer
+  void solve1(Node<T>* runner) { // with tmp buffer -- O(n)
     Node<T>* prev = runner;
     unordered_map<T, bool> hash_map;
 
@@ -47,4 +47,24 @@ public:
     }
     runner = runner->getNext();
   }
+
+  void solve2(Node<T>* pivot) {  // without any buffer -- O(n^2)
+    if (pivot == NULL) return;
+    Node<T>* runner = pivot;
+    Node<T>* prev = runner;
+    pivot = pivot->getNext();
+
+    while (pivot) { // pivot goes through the entire linked list
+      while (runner != pivot) { // scanning for the sublist
+        if (runner->getData() == pivot->getData()) {
+          prev->setNext(runner->getNext());
+          delete runner;
+          runner = prev;
+        }
+        runner = runner->getNext();
+      }
+      pivot = pivot->getNext();
+    }
+  }
+  
 };
