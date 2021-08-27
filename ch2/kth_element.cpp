@@ -6,15 +6,16 @@ template<class T>
 class Node {
 private:
   T data;
-  Node* next;
+  Node<T>* next;
 public:
-  Node(T d) {
+  Node<T>(T d) {
     data = d;
+    next = nullptr;
   }
-  bool setNext(Node* node) {
+  bool setNext(Node<T>* node) {
     next = node;
   }
-  Node* getNext() {
+  Node<T>* getNext() {
     return next;
   }
   bool setData(T d) {
