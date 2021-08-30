@@ -30,8 +30,8 @@ template<class T>
 class Solution {
 public:
   Node<T>* solve(Node<T>* head) {
-    Node<T>* slow_runner = head;  // jumps one node
-    Node<T>* fast_runner = head;  // jumps two nodes
+    Node<int>* slow_runner = head;  // jumps one node
+    Node<int>* fast_runner = head;  // jumps two nodes
 
     // find the collision spot (also considering the case not having the loop)
     while(1) {
