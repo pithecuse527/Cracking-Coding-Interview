@@ -24,6 +24,7 @@ public:
     return true;
   }
 
+  // return the top of stk_num
   int topOfStack(int stk_num) {
     return stk_num*STK_SIZE+stack_headers[stk_num]
   }
