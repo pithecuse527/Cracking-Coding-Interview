@@ -38,23 +38,22 @@ private:
   int val;
 };
 
-// getting the height of the subtree
+// getting the height of the subtree, stop searching when it founds not balanced
+// worse case -- O(nlogn)
+// average -- O(n)
 int getHeight(Node* node) {
   if (!node) return 0;
-  return max(getHeight(node->getLeft()),
-             getHeight(node->getRight()))+1;
+  int left_height = getHeight(node->getLeft());
+  if (left_height == -1) return -1;
+  int right_height = getHeight(node->getRight());
+  if (right_height == -1) return -1;
+
+  if (abs(left_height - right_height) >= 2) return -1;
+  return max(left_height, right_height) + 1;
+
 }
 
-// is it balanced tree?
-bool isBalanced(Node* node) {
-  if (!node) return true;
-  int left_height = getHeight(node->getLeft()); // get the left subtree's height
-  int right_height = getHeight(node->getRight()); // get the right subtree's height
-
-  if (abs(left_height - right_height) >= 2) {
-    return false;
-  }
-
-  // recursion for the subtrees
-  return isBalanced(node->getLeft()) && isBalanced(node->getRight());
+bool isBalancedOptimized(Node* node) {
+  if (getHeight(node) == -1) return false;
+  return true;
 }
