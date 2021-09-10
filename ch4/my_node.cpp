@@ -4,6 +4,7 @@ public:
     val = v;
     left = nullptr;
     right = nullptr;
+    visited = false;
   }
 
   // setting the left child
@@ -26,8 +27,19 @@ public:
     return right;
   }
 
+  // setting visited info.
+  void setVisited(bool b) {
+    visited = b;
+  }
+
+  // getting visited info.
+  bool getVisited() {
+    return visited;
+  }
+
 private:
   Node* left;
   Node* right;
   int val;
+  bool visited;
 };
