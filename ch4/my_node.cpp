@@ -7,6 +7,16 @@ public:
     visited = false;
   }
 
+  // setting the value
+  vid setVal(int v) {
+    value = v;
+  }
+
+  // getting the value
+  int getVal() {
+    return val;
+  }
+
   // setting the left child
   void setLeft(Node* n) {
     left = n;
