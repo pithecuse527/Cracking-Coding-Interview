@@ -8,8 +8,8 @@ public:
   }
 
   // setting the value
-  vid setVal(int v) {
-    value = v;
+  void setVal(int v) {
+    val = v;
   }
 
   // getting the value
