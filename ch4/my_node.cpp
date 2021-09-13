@@ -5,6 +5,7 @@ public:
     left = nullptr;
     right = nullptr;
     visited = false;
+    parent = nullptr;
   }
 
   // setting the value
@@ -47,9 +48,20 @@ public:
     return visited;
   }
 
+  // setting the parent node
+  void setParent(Node* n) {
+    parent = n;
+  }
+
+  // getting the parent node
+  Node* getParent() {
+    return parent;
+  }
+
 private:
   Node* left;
   Node* right;
   int val;
   bool visited;
+  Node* parent;
 };
