@@ -5,6 +5,8 @@
 using namespace std;
 
 void permutation(vector<string>& target, vector<char> numbers, int pvt_idx) {
+  // base case
+  // when pivot reaches to the last-1 position
   if (pvt_idx+1 == numbers.size()-1) {
     string *tmp = new string();
     for (int i=0; i<numbers.size(); i++)
@@ -19,10 +21,10 @@ void permutation(vector<string>& target, vector<char> numbers, int pvt_idx) {
     return;
   }
 
-  permutation(target, numbers, pvt_idx+1);
+  permutation(target, numbers, pvt_idx+1);  // find the permutation on current state
   for (int i=pvt_idx+1; i<numbers.size(); i++) {
     swap(numbers[i], numbers[pvt_idx]);
-    permutation(target, numbers, pvt_idx+1);
+    permutation(target, numbers, pvt_idx+1);  // find the permutation on swapped state
     swap(numbers[i], numbers[pvt_idx]);
   }
 
