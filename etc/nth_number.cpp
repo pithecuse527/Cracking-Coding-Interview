@@ -36,7 +36,6 @@ void permutation(vector<int>& numbers, vector<int> card, int pvt) {
 }
 
 int solution(vector<int> card, int n) {
-    // 여기에 코드를 작성해주세요.
     int answer = 0;
 		vector<int> numbers;
 		permutation(numbers, card, 0);
