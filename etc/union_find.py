@@ -13,7 +13,10 @@ def find(x):
 def union(x, y):
     x = find(x)
     y = find(y)
-    parent[y] = x
+    if x < y:
+        parent[y] = x
+    else:
+        parent[x] = y
 
 union(1, 4)
 union(2, 4)
