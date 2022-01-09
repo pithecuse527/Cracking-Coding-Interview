@@ -8,22 +8,22 @@ result = 0
 
 def bfs(origin, target, weight):
     q = deque([origin])
-    visited = set()
+    visited = set()     # visited nodes
     global result
     while q:
         v1 = q.popleft()
         for c in adj[v1]:
             if weight <= c[1] and c[0] not in visited:
                 visited.add(c[0])
-                if c[0] == target:
+                if c[0] == target:  # if we reach the target,
                     result = weight
                     return True
                 q.append(c[0])
-    return False
+    return False    # fail when we cannot reach to the target with BFS
 
 for _ in range(M):
     A, B, C = map(int, input().split())
-    adj[A].append((B, C))
+    adj[A].append((B, C))   # add (adjacent node, weight(limit) of the edge)
     adj[B].append((A, C))
     min_ = min(C, min_)
     max_ = max(C, max_)
