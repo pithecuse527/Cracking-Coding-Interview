@@ -1,8 +1,8 @@
 import math
 from decimal import *
 
-K, N = map(float, input().split())
-getcontext().prec = 1500
+# K, N = map(float, input().split())    # error!
+K, N = map(Decimal, input().split())    # more precise
 
 if N == 1:
     print(-1)
