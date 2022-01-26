@@ -10,6 +10,19 @@ for _ in range(M):
 for e in adj_mtx:
     e.sort()
 
+### This is not valid ###
+# edges = []
+# for _ in range(M):
+#     edges.append(tuple(map(int, input().split())))
+# edges.sort()
+
+# for e in edges:
+#     adj_mtx[e[0]].append(e[1])
+#     adj_mtx[e[1]].append(e[0])  # this line the main problem
+#     # the row, adj_mtx[e[1]], cannot gurantee that
+#     # the elements(i.e. e[0]) are pushed in order
+#     # think about how the edges list sorted
+
 dfs_result = []
 dfs_visited = set()
 def dfs(n):
