@@ -7,23 +7,13 @@ B = list(map(int, input().split()))
 M = int(input())
 C = list(map(int, input().split()))
 
+q = deque()
 
-qs = [] # queuestack
-
-# queuestack init.
 for i in range(N):
-    if A[i] == 1:   # stk
-        qs.append([B[i]])
-    else:
-        qs.append(deque([B[i]]))
+    if A[i] == 0:
+        q.append(B[i])
 
-itm = None
 for i in range(M):
-    itm = C[i]
-    for j in range(N):
-        if A[j] == 1:
-            continue
-        qs[j].append(itm)
-        itm = qs[j].popleft()
-    print(itm, end=' ')
+    q.appendleft(C[i])
+    print(q.pop(), end=' ')
 print()
