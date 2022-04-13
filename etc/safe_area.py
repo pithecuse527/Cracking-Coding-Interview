@@ -1,20 +1,25 @@
 import sys
-sys.setrecursionlimit(100000)
 input = sys.stdin.readline
 N = int(input())
 heights = [list(map(int, input().split())) for _ in range(N)]
 dirs = [(-1, 0), (1, 0), (0, -1), (0, 1)]  # 위, 아래, 왼, 오른 방향
 
 def dfs(pvt_height, y, x, visited):
-    visited.add((y, x))  # dfs에 의해 오게 된 현재 지점을 방문했다고 기록
-    for dy, dx in dirs:  # 현재 지점을 기준으로 위, 아래, 왼, 오른 방향으로 가기
-        ny = dy + y  # 다음 방문 지점
-        nx = dx + x
-        if not (0 <= ny < N and 0 <= nx < N):
-            continue
-        if (ny, nx) not in visited and heights[ny][nx] > pvt_height:
-            # 다음으로 방문할 위치를 방문한 적이 없고 pvt_height보다 높다면 계속해서 깊게 탐색
-            dfs(pvt_height, ny, nx, visited)
+    visited.add((y, x))
+    stk = [(y, x)]
+    
+    while stk:  # 스택이 빌 때까지
+        cy, cx = stk.pop()  # 다음으로 방문할 위치 pop (깊이 우선이므로 top이 곧 깊은 위치)
+        for dy, dx in dirs:
+            ny = dy + cy  # 다음 방문 위치
+            nx = dx + cx
+            if not (0 <= ny < N and 0 <= nx < N):  # 범위 체크
+                continue
+            
+            # dfs를 하면서 방문한 적이 없고 pvt_height보다 높은 위치라면 다음으로 방문하도록...
+            if (ny, nx) not in visited and heights[ny][nx] > pvt_height:
+                stk.append((ny, nx))   # 다음 방문 위치 쌓기
+                visited.add((ny, nx))  # 방문 기록 저장
 
 # 높이가 가장 큰 지역의 높이 구하기
 # (주어진 배열에서 최대값을 찾으면 되는 것입니다)
