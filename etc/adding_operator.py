@@ -12,6 +12,7 @@ def backtracking(nums, ops, depth, calc_sum):
     if depth == N:  # exceed the max depth
         max_value = max(max_value, calc_sum)
         min_value = min(min_value, calc_sum)
+        return
     
     plus_cnt = ops[0]
     minus_cnt = ops[1]
